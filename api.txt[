@@ -1,0 +1,13 @@
+entrada
+curl -X POST -d '{"plate": "aaA-4444"}' -H 'Content-type: application/json'
+https://parking-lot-to-pfz.herokuapp.com/parking
+
+pagamento
+curl -X POST https://parking-lot-to-pfz.herokuapp.com/parking/aAa-4444/pay
+
+
+Saida
+curl -X POST https://parking-lot-to-pfz.herokuapp.com/parking/AaA-4444/out
+
+Historico
+curl https://parking-lot-to-pfz.herokuapp.com/parking/AaA-444

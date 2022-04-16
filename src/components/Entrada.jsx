@@ -1,6 +1,6 @@
 import React from 'react';
 import Input from '../Form/Input';
-import axios from 'axios';
+
 import Error from '../helpers/Error';
 import Button from './Button';
 import { PLACA_POST } from '../Api';
@@ -18,7 +18,10 @@ const Entrada = () => {
 
   function handleBlur({ target }) {
     if (types === false) return true;
-    if (!types.placa.regex.test(target.value)) {
+    if (target.value.length === 0) {
+      setError('Preencha um valor');
+      return false;
+    } else if (!types.placa.regex.test(target.value)) {
       setError(types.message);
       return false;
     } else {

@@ -16,7 +16,7 @@ const App = () => {
         <Menu />
         <Routes>
           <Route path="/" element={<Entrada />} />
-          <Route path="/out" element={<Saida />} />
+          <Route path="/out/*" element={<Saida />} />
           <Route path="/historico" element={<Historico />} />
         </Routes>
       </BrowserRouter>

@@ -13,6 +13,10 @@ const Menu = () => {
         {' '}
         Saida
       </Link>
+      <Link className={styles.link} to="/historico">
+        {' '}
+        Historico
+      </Link>
     </div>
   );
 };

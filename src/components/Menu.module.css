@@ -1,13 +1,30 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Akshar&display=swap');
+
 .menu {
   width: 100%;
-  margin-top: 3rem;
-  background: green;
+
+  background: black;
   display: flex;
   justify-content: space-around;
+  font-family: 'Akshar', sans-serif;
+  font-size: 1.2rem;
+  text-transform: uppercase;
 }
 
 .link {
   padding: 10px 10px;
   color: white;
+
+}
+
+@media(max-width:450px) {
+
+  .menu {
+
+    font-size: 1rem;
+  
+  }
+  
 
 }

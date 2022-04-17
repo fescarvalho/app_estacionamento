@@ -36,7 +36,9 @@ const Saida = () => {
     <>
       <form className={styles.form}>
         <Input label="Número da Placa:" type="text" name="placa" {...placa} />
-        <Button onClick={pagamento}>Pagamento</Button>
+        <Button styles={styles.button} onClick={pagamento}>
+          Pagamento
+        </Button>
         <Button onClick={saida}>Saida</Button>
       </form>
     </>

@@ -1,23 +1,23 @@
-.header { 
+/* .header { 
   width: 100%; 
   height: 3rem;
-  background: red;
+  background: #fb1;
   display: flex;
   justify-content:center;
   align-items: center;
-}
+} */
 
-.nav {
+/* .nav {
   width: 80%;
   height: 80%;
   background: white;
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
+} */
 
-.img{
+/* .img{
   width: 20rem;
   height: 100%;
   background: blue;
-}
+} */

@@ -11,7 +11,7 @@ const Menu = () => {
       </Link>
       <Link className={styles.link} to="/out">
         {' '}
-        Saida
+        Saida/Pagamento
       </Link>
       <Link className={styles.link} to="/historico">
         {' '}

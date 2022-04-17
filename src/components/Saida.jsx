@@ -1,54 +1,43 @@
 import React from 'react';
 import Input from '../Form/Input';
 import Button from './Button';
-import SaidaConfirm from './SaidaConfirm';
+import styles from './Saida.module.css';
+import useForm from '../Hooks/useForm';
 
 import { PLACA_DELETE, PLACA_HISTORY, PLACA_PAGE } from '../Api';
 
 const Saida = () => {
-  const [value, setValue] = React.useState('');
+  const [pago, setPago] = React.useState(null);
   const [error, setError] = React.useState(null);
-  const [ativar, setAtivar] = React.useState(false);
-
-  function handleBlur({ target }) {
-    console.log(target.value);
-    setValue(target.value);
-    return value;
-  }
-
-  function openModal(e) {
-    e.preventDefault();
-    setAtivar(!ativar);
-  }
+  const placa = useForm('placa');
 
   async function saida(e) {
     e.preventDefault();
-    const { url, options } = PLACA_DELETE(value);
-    await fetch(url, options).then((response) => response.text);
+    if (pago === true) {
+      const { url, options } = PLACA_DELETE(placa.value);
+      const response = await fetch(url, options);
+      const text = await response.text();
+      console.log('Saiu');
+    } else {
+      setError('Por favor, realiza o pagamento');
+    }
   }
 
   async function pagamento(e) {
     e.preventDefault();
-    const { url, options } = PLACA_PAGE(value);
-    await fetch(url, options).then((response) => response.text);
+    const { url, options } = PLACA_PAGE(placa.value);
+    const response = await fetch(url, options);
+    const text = await response.text();
+    setPago(true);
+    console.log('Pagou');
   }
 
   return (
     <>
-      <form>
-        <Input
-          onBlur={handleBlur}
-          label="Número da Placa:"
-          type="text"
-          name="placa"
-        />
+      <form className={styles.form}>
+        <Input label="Número da Placa:" type="text" name="placa" {...placa} />
         <Button onClick={pagamento}>Pagamento</Button>
-        <Button onClick={openModal} closeModal={setAtivar}>
-          {' '}
-          Modal
-        </Button>
         <Button onClick={saida}>Saida</Button>
-        {ativar && <SaidaConfirm />}
       </form>
     </>
   );

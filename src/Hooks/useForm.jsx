@@ -3,8 +3,8 @@ import React from 'react';
 const types = {
   placa: {
     regex: /^[a-zA-Z]{3}-[0-9]{4}/g,
+    message: 'Preencha uma Placa valida : AAA-0000',
   },
-  message: 'Preencha uma Placa valida : AAA-0000',
 };
 
 const useForm = (type) => {
@@ -13,6 +13,7 @@ const useForm = (type) => {
 
   function validate(value) {
     if (type === false) return true;
+
     if (value.length === 0) {
       setError('Preencha um valor');
       return false;

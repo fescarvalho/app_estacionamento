@@ -1,58 +1,52 @@
 import React from 'react';
+import styles from './Entrada.module.css';
 import Input from '../Form/Input';
-
-import Error from '../helpers/Error';
+import useForm from '../Hooks/useForm';
 import Button from './Button';
 import { PLACA_POST } from '../Api';
+import Confirm from './Confirm';
 
 const Entrada = () => {
-  const [data, setData] = React.useState('');
   const [error, setError] = React.useState(null);
+  const [loading, setLoading] = React.useState(null);
+  const [active, setActive] = React.useState(null);
+  const placa = useForm('placa');
 
-  const types = {
-    placa: {
-      regex: /^[a-zA-Z]{3}-[0-9]{4}/g,
-    },
-    message: 'Preencha uma Placa valida : AAA-0000',
-  };
+  async function handleSubmit(event) {
+    event.preventDefault();
 
-  function handleBlur({ target }) {
-    if (types === false) return true;
-    if (target.value.length === 0) {
-      setError('Preencha um valor');
-      return false;
-    } else if (!types.placa.regex.test(target.value)) {
-      setError(types.message);
-      return false;
-    } else {
-      setError(null);
-      setData(target.value);
-      return true;
+    if (!placa.validate()) {
+      const { url, options } = PLACA_POST({
+        plate: placa.value,
+      });
+
+      try {
+        setLoading(true);
+        setActive(true);
+        const response = await fetch(url, options);
+        const json = await response.json();
+        console.log(json);
+
+        setLoading(false);
+        setActive(false);
+      } catch (error) {
+        setError(error);
+      } finally {
+        setError(null);
+        setLoading(false);
+        setActive(true);
+      }
     }
   }
 
-  function handleSubmit(event) {
-    event.preventDefault();
-    const { url, options } = PLACA_POST({
-      plate: data,
-    });
-    fetch(url, options).then((response) => console.log(response));
-  }
-
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <Input
-          onBlur={handleBlur}
-          label="Número da Placa:"
-          type="text"
-          name="placa"
-        />
-        <Error error={error} />
-        {error ? (
-          <Button disabled> Confirmar Entrada</Button>
+    <div styles={styles.container}>
+      <form className={styles.form} onSubmit={handleSubmit}>
+        <Input label="Número da Placa:" type="text" name="placa" {...placa} />
+        {active === true ? (
+          <Button disabled>Carro Guardado</Button>
         ) : (
-          <Button> Confirmar Entrada</Button>
+          <Button>Confirmar</Button>
         )}
       </form>
     </div>

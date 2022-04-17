@@ -1,6 +1,8 @@
 import React from 'react';
+import useForm from '../Hooks/useForm';
 import Input from '../Form/Input';
-import Error from '../helpers/Error';
+import styles from './Historico.module.css';
+
 import Button from '../components/Button';
 import { PLACA_HISTORY } from '../Api';
 
@@ -9,37 +11,22 @@ const Historico = () => {
   const [value, setValue] = React.useState('');
   const [error, setError] = React.useState(null);
 
-  function handleBlur({ target }) {
-    if (target.value.length === 0) {
-      setError('Insira uma placa');
-    } else {
-      setError(null);
-      setValue(target.value);
-    }
-  }
+  const placa = useForm('placa');
 
   async function historico(e) {
     e.preventDefault();
-    const { url, options } = PLACA_HISTORY(value);
-    await fetch(url, options)
-      .then((response) => response.json())
-      .then((json) => {
-        console.log(json);
-        setData(json);
-      })
-      .catch((err) => setError(err));
+    const { url, options } = PLACA_HISTORY(placa.value);
+
+    const response = await fetch(url, options);
+    const json = await response.json();
+    setData(json);
   }
 
   return (
     <>
-      <form>
-        <Input
-          onBlur={handleBlur}
-          label="Número da Placa:"
-          type="text"
-          name="placa"
-        />
-        <Error error={error} />
+      <form className={styles.form}>
+        <Input label="Número da Placa:" type="text" name="placa" {...placa} />
+
         {error ? (
           <Button disabled>Ver Historico</Button>
         ) : (
@@ -48,10 +35,18 @@ const Historico = () => {
         <div>
           {' '}
           {data.map((data) => (
-            <ul>
-              <li key={data.id}>
-                <p>{data.time}</p>
-                <p>{data.paid === true ? 'pago' : '-'}</p>
+            <ul className={styles.ul}>
+              <li className={styles.li} key={data.id}>
+                <div className={styles.container}>
+                  <p className={styles.title}>Tempo:</p>
+                  <p className={styles.value}>{data.time}</p>
+                </div>
+                <div>
+                  <p className={styles.title}> Situação: </p>
+                  <p className={styles.value}>
+                    {data.paid === true ? 'PAGO' : 'NÃO PAGO'}
+                  </p>
+                </div>
               </li>
             </ul>
           ))}

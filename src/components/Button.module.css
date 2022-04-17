@@ -10,6 +10,7 @@
   padding: .8rem 1.2rem;
   box-sizing: border-box;
   transition: .1s;
+  margin-bottom: 30px;
 }
 
 .button:hover,
@@ -21,4 +22,7 @@
 .button:disabled {
   opacity: 0.5;
   cursor: wait;
+  background: green;
+  color: black;
+
 }

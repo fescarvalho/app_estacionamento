@@ -11,7 +11,8 @@ const Header = () => {
         </div>
         <div className={styles.links}>
           <Link to="/">Entrada</Link>
-          <Link to="/out">Saida</Link>
+          <Link to="/out">Saida/Pagamento</Link>
+          <Link to="/historico">Historico</Link>
         </div>
       </nav>
     </header>

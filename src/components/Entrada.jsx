@@ -5,10 +5,11 @@ import useForm from '../Hooks/useForm';
 import Button from './Button';
 import { PLACA_POST } from '../Api';
 import ModalOK from './ModalOK';
+import Confirm from './Confirm';
 
 const Entrada = () => {
   const [error, setError] = React.useState(null);
-  const [loading, setLoading] = React.useState(null);
+
   const [reservation, setReservation] = React.useState(false);
 
   const placa = useForm('placa');
@@ -24,7 +25,12 @@ const Entrada = () => {
       try {
         const response = await fetch(url, options);
         const json = await response.json();
+
         if (json.reservation) setReservation(true);
+        if (json.errors.plate.includes('already parked')) {
+          setReservation(false);
+          alert('Carro ja esta no estacionamento');
+        }
       } catch (error) {
         setError(error);
       } finally {
@@ -42,7 +48,7 @@ const Entrada = () => {
         ) : (
           <Button>Cofirmar</Button>
         )}
-        {reservation && <ModalOK />}
+        {reservation && <Confirm />}
       </form>
     </section>
   );

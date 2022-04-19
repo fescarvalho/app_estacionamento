@@ -4,7 +4,7 @@ import './Confirm.module.css';
 const Confirm = () => {
   return (
     <div className="container">
-      <button className="btn">Carro Entrou</button>
+      <h1 className="btn">Carro Entrou</h1>
     </div>
   );
 };

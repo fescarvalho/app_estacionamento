@@ -3,7 +3,6 @@
 
 .menu {
   width: 100%;
-
   background: black;
   display: flex;
   justify-content: space-around;
@@ -18,12 +17,12 @@
 
 }
 
+
 @media(max-width:450px) {
 
   .menu {
-
     font-size: 1rem;
-  
+
   }
   
 

@@ -4,3 +4,33 @@
   box-sizing: border-box;
   text-decoration: none;
 }
+
+.animeLeft {
+  opacity: 0;
+  transform: translateX(-40px);
+  animation: animeLeft 0.3s forwards
+}
+
+.btnConfirm {
+  background: green;
+  padding: 10px 20px;
+  border: 1px solid black;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+}
+.btnCancel {
+  background: red;
+  padding: 10px 20px;
+  border: 1px solid black;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+}
+
+@keyframes animeLeft {
+  to {
+    opacity: 1;
+    transform: initial
+  }
+}

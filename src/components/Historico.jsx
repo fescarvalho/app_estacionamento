@@ -24,10 +24,10 @@ const Historico = () => {
 
   return (
     <>
-      <form className={styles.form}>
+      <form className={styles.form + ' animeLeft'}>
         <Input label="Número da Placa:" type="text" name="placa" {...placa} />
 
-        {error ? (
+        {placa.error ? (
           <Button disabled>Ver Historico</Button>
         ) : (
           <Button onClick={historico}>Ver Historico</Button>

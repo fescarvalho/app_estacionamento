@@ -18,10 +18,11 @@ const Saida = () => {
       const text = await response.text();
 
       if (text.includes('not paid')) {
-        console.log('Nao pode sair, falta pagamento');
+        alert('Nao pode sair, falta pagamento');
         setError(true);
       } else {
         setError(null);
+        alert('carro saiu');
       }
     } else {
       setError(null);
@@ -38,15 +39,14 @@ const Saida = () => {
       if (response.ok) {
         setPaid(true);
         setError(null);
+        alert('PAGO');
       }
 
       const text = await response.text();
-
+      console.log(text);
       if (text.includes('not found')) {
-        alert('Carro nao existe');
-        setError(true);
-      } else {
-        setPaid(false);
+        alert('Carro nao existe ou ja foi pago');
+        setPaid(true);
       }
     } else {
       setError(error);

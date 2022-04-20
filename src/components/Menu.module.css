@@ -14,8 +14,41 @@
 .link {
   padding: 10px 10px;
   color: white;
+  position: relative;
+  text-align: center;
+  
+}
+
+.link::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 2px;
+  position: absolute;
+  left: 0px;
+  transition: 0.2s;
+  
+}
+
+.link:hover{
+  color: ccc;
+  transition: 0.2s;
+  
+}
+
+
+.link:hover::after {
+  color:#fb5;
+  background: #fb5;
 
 }
+
+:global(.active) {
+  color:  black;
+  background: #fb5;
+}
+
+
 
 
 @media(max-width:450px) {

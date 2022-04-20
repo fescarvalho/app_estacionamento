@@ -4,14 +4,13 @@ import Input from '../Form/Input';
 import useForm from '../Hooks/useForm';
 import Button from './Button';
 import { PLACA_POST } from '../Api';
-import ModalOK from './ModalOK';
-import Confirm from './Confirm';
+
+import { toast } from 'react-toastify';
 
 const Entrada = () => {
   const [error, setError] = React.useState(null);
 
   const [reservation, setReservation] = React.useState(false);
-
   const placa = useForm('placa');
 
   async function handleSubmit(event) {
@@ -21,15 +20,18 @@ const Entrada = () => {
       const { url, options } = PLACA_POST({
         plate: placa.value,
       });
-
       try {
         const response = await fetch(url, options);
+
         const json = await response.json();
 
-        if (json.reservation) setReservation(true);
+        if (json.reservation) {
+          setReservation(true);
+          toast.success('Carro Estacionado!👌');
+        }
         if (json.errors.plate.includes('already parked')) {
           setReservation(false);
-          alert('Carro ja esta no estacionamento');
+          toast.error('Veiculo ja se encontra no estacionamento! 🛑');
         }
       } catch (error) {
         setError(error);
@@ -42,13 +44,17 @@ const Entrada = () => {
   return (
     <section className={styles.container + ' animeLeft'}>
       <form className={styles.form} onSubmit={handleSubmit}>
-        <Input label="Número da Placa:" type="text" name="placa" {...placa} />
+        <Input
+          label="Por favor, digite a Placa do Veiculo:"
+          type="text"
+          name="placa"
+          {...placa}
+        />
         {placa.error ? (
           <Button disabled>Cofirmar</Button>
         ) : (
           <Button>Cofirmar</Button>
         )}
-        {reservation && <Confirm />}
       </form>
     </section>
   );

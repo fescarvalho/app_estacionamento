@@ -13,7 +13,7 @@ const useForm = (type) => {
 
   function validate(value) {
     if (value.length === 0) {
-      setError('Preencha um valor');
+      setError('O campo não pode estar vazio');
       return false;
     }
 

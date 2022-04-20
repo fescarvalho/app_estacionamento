@@ -4,6 +4,7 @@ import Button from './Button';
 import styles from './Saida.module.css';
 import useForm from '../Hooks/useForm';
 import { PLACA_DELETE, PLACA_PAGE } from '../Api';
+import { toast } from 'react-toastify';
 
 const Saida = () => {
   const [error, setError] = React.useState(null);
@@ -18,11 +19,11 @@ const Saida = () => {
       const text = await response.text();
 
       if (text.includes('not paid')) {
-        alert('Nao pode sair, falta pagamento');
+        toast.error('Efetue o pagamento para liberação do veiculo! 🛑');
         setError(true);
       } else {
         setError(null);
-        alert('carro saiu');
+        toast.success('Carro liberado com sucesso! 🏃‍♂️');
       }
     } else {
       setError(null);
@@ -39,13 +40,15 @@ const Saida = () => {
       if (response.ok) {
         setPaid(true);
         setError(null);
-        alert('PAGO');
+        toast.success('Pagamento efetuado com sucesso! 💰');
       }
 
       const text = await response.text();
       console.log(text);
       if (text.includes('not found')) {
-        alert('Carro nao existe ou ja foi pago');
+        toast.warning(
+          'Veiculo não se encontra no estacionamento, ou já foi pago 🛑',
+        );
         setPaid(true);
       }
     } else {
@@ -58,7 +61,12 @@ const Saida = () => {
   return (
     <>
       <form className={styles.form + ' animeLeft'}>
-        <Input label="Número da Placa:" type="text" name="placa" {...placa} />
+        <Input
+          label="Por favor, digite a Placa do Veiculo:"
+          type="text"
+          name="placa"
+          {...placa}
+        />
         {placa.error ? (
           <Button disabled styles={styles.button}>
             Pagamento

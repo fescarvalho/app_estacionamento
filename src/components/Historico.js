@@ -3,13 +3,11 @@ import useForm from '../Hooks/useForm';
 import Input from '../Form/Input';
 import styles from './Historico.module.css';
 
-import Button from '../components/Button';
+import Button from './Button';
 import { PLACA_HISTORY } from '../Api';
 
 const Historico = () => {
   const [data, setData] = React.useState([]);
-  const [value, setValue] = React.useState('');
-  const [error, setError] = React.useState(null);
 
   const placa = useForm('placa');
 
@@ -25,7 +23,12 @@ const Historico = () => {
   return (
     <>
       <form className={styles.form + ' animeLeft'}>
-        <Input label="Número da Placa:" type="text" name="placa" {...placa} />
+        <Input
+          label="Por favor, digite a Placa do Veiculo:"
+          type="text"
+          name="placa"
+          {...placa}
+        />
 
         {placa.error ? (
           <Button disabled>Ver Historico</Button>
@@ -34,9 +37,9 @@ const Historico = () => {
         )}
         <div>
           {' '}
-          {data.map((data) => (
-            <ul className={styles.ul}>
-              <li className={styles.li} key={data.id}>
+          {data.map((data, id) => (
+            <ul className={styles.ul} key={id}>
+              <li className={styles.li}>
                 <div className={styles.container}>
                   <p className={styles.title}>Tempo:</p>
                   <p className={styles.value}>{data.time}</p>

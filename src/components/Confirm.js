@@ -1,10 +1,11 @@
 import React from 'react';
 import './Confirm.module.css';
 
-const Confirm = () => {
+const Confirm = ({ text }) => {
   return (
     <div className="container">
-      <h1 className="btn">Carro Entrou</h1>
+      <h1 className="btn">{text}</h1>
+      <button>X</button>
     </div>
   );
 };

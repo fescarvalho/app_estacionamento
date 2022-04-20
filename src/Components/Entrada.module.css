@@ -1,0 +1,27 @@
+
+.container {
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
+  gap: 2rem;
+}
+
+.container::before {
+  display:block;
+  content: "";
+  background: url("../img/carro.jpg") no-repeat center center;
+  background-size:cover;
+}
+.form {
+  text-align: center;
+
+}
+
+@media(max-width: 40rem) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+  .container::before {
+    display: none
+  }
+}

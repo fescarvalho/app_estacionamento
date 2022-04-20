@@ -9,8 +9,8 @@ import { toast } from 'react-toastify';
 
 const Entrada = () => {
   const [error, setError] = React.useState(null);
-
   const [reservation, setReservation] = React.useState(false);
+  
   const placa = useForm('placa');
 
   async function handleSubmit(event) {
@@ -21,8 +21,8 @@ const Entrada = () => {
         plate: placa.value,
       });
       try {
-        const response = await fetch(url, options);
-
+        const response = await fetch(url, options)
+     
         const json = await response.json();
 
         if (json.reservation) {

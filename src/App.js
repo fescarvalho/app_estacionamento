@@ -1,11 +1,11 @@
 import React from 'react';
-import Header from './components/Header';
-import Menu from './components/Menu';
+
+import Menu from './Components/Menu';
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Saida from './components/Saida';
-import Entrada from './components/Entrada';
-import Historico from './components/Historico';
+import Saida from './Components/Saida';
+import Entrada from './Components/Entrada';
+import Historico from './Components/Historico';
 import { ToastContainer } from 'react-toastify';
 
 import './App.css';

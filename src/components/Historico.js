@@ -2,7 +2,6 @@ import React from 'react';
 import useForm from '../Hooks/useForm';
 import Input from '../Form/Input';
 import styles from './Historico.module.css';
-
 import Button from './Button';
 import { PLACA_HISTORY } from '../Api';
 
@@ -14,7 +13,6 @@ const Historico = () => {
   async function historico(e) {
     e.preventDefault();
     const { url, options } = PLACA_HISTORY(placa.value);
-
     const response = await fetch(url, options);
     const json = await response.json();
     setData(json);

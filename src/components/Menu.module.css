@@ -48,8 +48,50 @@
   background: #fb5;
 }
 
+.mobileButton {
+  padding: 10px 10px;
+  background: #fb5 ;
+  color: black;
+  position: relative;
+  text-align: center;
+  width: 40px;
+  height: 40px;
+  border-radius: .2rem;
+  align-items: center;
+  display: flex;
+  justify-content:center;
+  border: 1px solid transparent;
+  transition: 0.1s;
+  cursor: pointer;
+}
 
+.mobileButton::after {
+  content: '';
+  display: block;
+  width: 1.2rem;
+  height: 2px;
+  background: currentColor;
+  border-radius: 2px;
+  box-shadow: 0 6px currentColor,  0 -6px currentColor;
+  transition: 0.2s;
+}
 
+.mobileButton:focus,
+.mobileButton:hover,
+.mobileButtonActive {
+  outline: none;
+  background: white;
+  box-shadow: 0 0 0 3px #fea;
+  border-color: #fb1;
+  color: #fb1;
+
+}
+.mobileButtonActive::after {
+  transform: rotate(90deg);
+  width: 4px;
+  height: 4px;
+  box-shadow: 0 8px currentColor,  0 -8px currentColor;
+}
 
 @media(max-width:450px) {
 

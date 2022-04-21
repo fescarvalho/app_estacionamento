@@ -18,10 +18,10 @@ const Entrada = () => {
     event.preventDefault();
 
     if (placa.validate()) {
-    
       const { url, options } = PLACA_POST({
         plate: placa.value,
       });
+
       try {
         setError(null);
         setLoading(true);
@@ -35,6 +35,7 @@ const Entrada = () => {
           setReservation(false);
           toast.error('Veiculo ja se encontra no estacionamento! 🛑');
         }
+        
       } catch (error) {
         setError(error);
       } finally {

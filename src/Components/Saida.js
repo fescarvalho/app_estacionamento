@@ -44,6 +44,7 @@ const Saida = () => {
       const { url, options } = PLACA_PAGE(placa.value);
       const response = await fetch(url, options);
       setLoading(false);
+     
       if (response.ok) {
         setPaid(true);
         setError(null);
@@ -51,7 +52,8 @@ const Saida = () => {
       }
 
       const text = await response.text();
-      console.log(text);
+     
+      
       if (text.includes('not found')) {
         toast.warning(
           'Veiculo não se encontra no estacionamento, ou já foi pago 🛑',

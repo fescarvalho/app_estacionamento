@@ -1,14 +1,22 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Akshar&display=swap');
 
-.menu {
+.menu,
+.menuMobile {
   width: 100%;
+  height: 50px;
   background: black;
   display: flex;
   justify-content: space-around;
+  align-items: center;
   font-family: 'Akshar', sans-serif;
   font-size: 1.2rem;
   text-transform: uppercase;
+}
+
+.menuMobile{
+  padding: 1rem;
+  justify-content: end;
 }
 
 .link {
@@ -31,7 +39,7 @@
 }
 
 .link:hover{
-  color: ccc;
+  color: #fb5;
   transition: 0.2s;
   
 }
@@ -46,6 +54,8 @@
 :global(.active) {
   color:  black;
   background: #fb5;
+  height: 40px;
+  border-radius: 4px;
 }
 
 .mobileButton {
@@ -81,7 +91,7 @@
 .mobileButtonActive {
   outline: none;
   background: white;
-  box-shadow: 0 0 0 3px #fea;
+  box-shadow: 0 0 0 3px #fb5;
   border-color: #fb1;
   color: #fb1;
 
@@ -93,6 +103,46 @@
   box-shadow: 0 8px currentColor,  0 -8px currentColor;
 }
 
+.navMobile{
+  display: block;
+  position: absolute;
+  font-family: 'Akshar', sans-serif;
+  top: 51px;
+  right: 0px;
+
+  padding: 0 1rem;
+  background: rgba(0,0,0,1);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+  border-radius: .3rem;
+  transform: translateX(-10px);
+  opacity: 0;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.navMobile a,
+.navMobile button {
+  display:flex;
+  align-items: center;
+  background: none;
+  width: 100%;
+  color: white;
+  border: none;
+  padding: .7rem 0;
+  cursor: point;
+}
+
+.navMobileActive{
+  transition: .3s;
+  transform: initial;
+  opacity:1;
+  z-index: 100;
+  pointer-events: initial;
+}
+
+.navMobile .link::after {
+  display: none;
+}
 @media(max-width:450px) {
 
   .menu {

@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Akshar&display=swap');
 
 .container {
   display:grid;
@@ -15,6 +16,29 @@
 .form {
   text-align: center;
 
+}
+
+.title {
+  width: 100px;
+  font-family:Akshar;
+   text-transform: uppercase;
+   font-size: 3rem;
+   margin-top: 3rem;
+   position: relative;
+   margin: 0 auto;
+}
+
+.title::before {
+  content: "";
+  width:20px;
+  height:20px;
+  display: block;
+  position: absolute;
+  background: #fb1;
+  border-radius: 4px;
+  left:130px;
+  bottom: 8px;
+  z-index: -1;
 }
 
 @media(max-width: 40rem) {

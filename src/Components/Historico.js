@@ -7,20 +7,26 @@ import { PLACA_HISTORY } from '../Api';
 
 const Historico = () => {
   const [data, setData] = React.useState([]);
+  const [loading, setLoading] = React.useState(false);
 
   const placa = useForm('placa');
 
   async function historico(e) {
     e.preventDefault();
+    setLoading(true)
     const { url, options } = PLACA_HISTORY(placa.value);
     const response = await fetch(url, options);
     const json = await response.json();
     setData(json);
+    setLoading(false)
   }
 
   return (
     <>
       <form className={styles.form + ' animeLeft'}>
+      <div>
+          <h1 className='titles'>Historico</h1>
+        </div>
         <Input
           label="Por favor, digite a Placa do Veiculo:"
           type="text"
@@ -28,8 +34,8 @@ const Historico = () => {
           {...placa}
         />
 
-        {placa.error ? (
-          <Button disabled>Ver Historico</Button>
+        {placa.error || loading? (
+          <Button disabled>Aguarde...</Button>
         ) : (
           <Button onClick={historico}>Ver Historico</Button>
         )}
